@@ -1,0 +1,38 @@
+ //if dates checkin and checkout are on same bar, short formate, else, separate large format 
+      /* if (checkinandoutBar.exists()) {
+       cy.get('[data-testid="date-display-field-start"]').contains(formattedCheckIn_Short);
+       cy.get('[data-testid="date-display-field-start"]').contains(formattedCheckOut_Short);
+       //TODO: Timed out retrying after 4000ms: Expected to find content: 'Invalid Date' within the element: <button.d47738b911.e246f833f7.fb1847d86a.d1b7b9fc55> but never did.
+    } else {
+        cy.get('[data-testid="date-display-field-start"]').contains(formattedCheckIn_Long);
+        cy.get('[data-testid="date-display-field-start"]').contains(formattedCheckOut_Long);
+    }
+      */
+      /* 
+        cy.get('.c3b96a31ef').should('have.value', CHECK_IN_DATE + CHECK_OUT_DATE);
+      
+        cy.get('[data-testid="date-display-field-start"]', {timeout: 10000}).should('have.value', CHECK_IN_DATE);
+        cy.get('[data-testid="date-display-field-end"]', {timeout: 10000}).should('have.value', CHECK_OUT_DATE);
+       */
+      /*
+      cy.get(CHECK_IN_DATE).should('have.attr', 'data-date');
+      cy.get(CHECK_OUT_DATE).should('have.attr', 'data-date');
+      */
+      
+      /*
+      cy.get(CHECK_IN_DATE_BUTTON, {timeout: 10000}).should('have.value', CHECK_IN_DATE);
+      cy.get(CHECK_OUT_DATE_BUTTON, {timeout: 10000}).should('have.value', CHECK_OUT_DATE);
+      */
+      
+      /*
+      cy.get('[data-testid="date-display-field-start"]', {timeout: 10000}).should('have.value', CHECK_IN_DATE);
+      cy.get('[data-testid="date-display-field-end"]', {timeout: 10000}).should('have.value', CHECK_OUT_DATE);
+      */
+
+        //cy.get('#text').should('have.text', CHECK_IN_DATE);
+        //cy.get('#text').should('have.value', CHECK_IN_DATE);
+
+       // cy.get('.c3b96a31ef').parent('[data-testid="searchbox-layout-vertical"]').should('have.attr', 'data-date', CHECK_IN_DATE);
+       // cy.get('.c3b96a31ef').should('have.value', CHECK_IN_DATE);
+
+        //cy.get('[data-testid="searchbox-layout-vertical"]')

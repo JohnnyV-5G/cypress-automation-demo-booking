@@ -1,0 +1,60 @@
+/// <reference types="cypress"/>
+
+// Get the date in YYYY-MM-DD format. Offset is the parameter to get the future date.
+function getDate(offset = 0) {
+    const today = new Date()
+    const future = new Date(today)
+    future.setDate(future.getDate() + offset)
+    return future.toISOString().split('T')[0]
+}
+
+describe('Main test suite for Booking.com', () => {   
+    
+    const COOKIES_BANNER_YES_BUTTON_ID = '#onetrust-accept-btn-handler'
+    const DESIRED_LOCATION = 'Porto'
+    const DESTINATION_SEARCH_FIELD = '[name="ss"]'
+    const CHECK_IN_DATE_BUTTON = '[data-mode="checkin"]'
+    const CHECK_OUT_DATE_BUTTON = '[data-mode="checkout"]'
+    const CHECK_IN_DATE = `[data-date=${getDate()}]`
+    const CHECK_OUT_DATE = `[data-date=${getDate(7)}]`
+
+    it('navigate to url, write destination and pick dates', function(){  
+        cy.clearCookies()
+        cy.visit('/')
+            
+        // Accept page cookies, use of Brute because cookies pop up sometimes doesnt pop-up
+        cy.get(COOKIES_BANNER_YES_BUTTON_ID).wait(500).contains('Accept').click({force: true})
+       
+       // Destination
+       cy.get(DESTINATION_SEARCH_FIELD).type(DESIRED_LOCATION, {force:true})
+        
+        
+       // Dates 
+       // Check-in        
+       cy.get(CHECK_IN_DATE_BUTTON).click()
+       var d1 = cy.get(CHECK_IN_DATE).click({force: true});
+       
+       //Check-out 
+       cy.get(CHECK_OUT_DATE_BUTTON).click()
+       var d2 = cy.get(CHECK_OUT_DATE).click({force: true})
+        
+       //Search
+       //cy.get('.ffa9856b86 > :nth-child(4) > .fc63351294').click()
+       cy.get('.sb-searchbox__button').click()
+
+       //Date Converter
+       let date1 = new Date(d1);
+       let date2 = new Date(d2);
+       
+       //Console Print
+       cy.task('log', 'Output to the terminal').then('location','date1','date2');
+
+        //Verify
+        //cy.get('.ade92cdb3b').should('have.text', 'Porto');        
+        cy.get('#__bui-c1406355-1').should('have.text', location);
+        cy.get('[data-testid="date-display-field-start"]').should('have.text','date1');
+        cy.get('[data-testid="date-display-field-end"]').should('have.text','date2');   
+               
+    })
+
+})
